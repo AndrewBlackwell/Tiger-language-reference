@@ -7,14 +7,14 @@ The Tiger language is a small, imperative language with integer and string varia
 **1 Lexical Aspects**
 
 An *identifier* is a sequence of letters, digits, and underscores that starts with a letter. Case is significant. Whitespace (spaces, tabs, newlines, returns, and formfeeds) or comments may appear between tokens and is ignored. A *comment* begins with /\* and ends with \*/. Comments may nest. An integer constant is a sequence of one or more decimal digits (i.e., 0123456789). There are no negative integer constants; negative numbers may be obtained by negating an integer constant using the unary-operator. A string constant is a sequence of zero or more printable characters, spaces, or escape sequences surrounded by double quotes " . Each escape sequence starts with a backslash \ and stands for some sequence of characters.  
-The escape sequences are
-\n       Newline
-\t        Tab
-\\"        Double quote
-\\         Backslash
-\\^c      Control-c, wherecis one of @A...Z[\]^_.
-\\ddd    The character with ASCII codeddd(three decimal digits)
-\···\       Any sequence of whitespace characters (spaces, tabs, newlines, returns, and formfeeds) surrounded by\s is ignored. This allows string constants to span multiple lines by ending and starting each with a backslash. The reserved words are array break do else end for function if in let nil of then to type var while. 
+The escape sequences are\
+\n     Newline\
+\t     Tab\
+\\"    Double quote\
+\\     Backslash\
+\\^c   Control-c, wherecis one of @A...Z[\]^_.\
+\\ddd   The character with ASCII codeddd(three decimal digits)\
+\···\   Any sequence of whitespace characters (spaces, tabs, newlines, returns, and formfeeds) surrounded by\s is ignored. This allows string constants to span multiple lines by ending and starting each with a backslash. The reserved words are array break do else end for function if in let nil of then to type var while.\
 The punctuation symbols are, : ; ( ) [ ] { }. + - * / = <> < <= > >= & | :=
 
 **2 Expressions**
@@ -78,7 +78,11 @@ A function application is an expression id ( expr-list~opt~) with zero or more c
 
 The binary operators are+ - * / = <> < > <= >= & |
 Parentheses group expressions in the usual way. A leading minus sign negates an integer expression. The binary operators +,-,*, and / require integer operands and return an integer result. The binary operators >,<,>=, and <= compare their operands, which may be either both integer or both string and produce the integer 1 if the comparison holds and 0 otherwise. String comparison is done using normal ASCII lexicographic order. The binary operators = and <> can compare any two operands of the same (non-valueless) type and return either integer 0 or 1. Integers are the same if they have the same value. Strings are the same if they contain the same characters. Two objects of record type are the same if they refer to the same record. Two arrays are the same if they refer to the same array. That is, records and arrays are compared using “reference” or “pointer” equality, not component wise. The logical operators&and|are lazy logical operators on integers. They do not evaluate their right argument if evaluating the left determines the result. Zero is considered false; every-
-thing else is considered true. Unary minus has the highest precedence followed by \* and \/ , then + and -, then =, < > , > , <, >=, and<=, then &, then | , then finally := . The +, -, *, and \/ operators are left associative. The com-
+thing else is considered true. Unary minus has the highest precedence followed by \* and \/ , then + and -, then =, < > , > , <, >=, and<=, then &, then | , then finally := . The +, -, *, and \/ operators are left associative.\
+
+## NEXT EDIT START HERE
+
+The com-
 parison operators do not associate, e.g.,a=b=cis erroneous, but
 a=(b=c)is legal.
 
