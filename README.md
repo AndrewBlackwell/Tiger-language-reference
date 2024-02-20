@@ -78,36 +78,17 @@ A function application is an expression id ( expr-list~opt~) with zero or more c
 
 The binary operators are+ - * / = <> < > <= >= & |
 Parentheses group expressions in the usual way. A leading minus sign negates an integer expression. The binary operators +,-,*, and / require integer operands and return an integer result. The binary operators >,<,>=, and <= compare their operands, which may be either both integer or both string and produce the integer 1 if the comparison holds and 0 otherwise. String comparison is done using normal ASCII lexicographic order. The binary operators = and <> can compare any two operands of the same (non-valueless) type and return either integer 0 or 1. Integers are the same if they have the same value. Strings are the same if they contain the same characters. Two objects of record type are the same if they refer to the same record. Two arrays are the same if they refer to the same array. That is, records and arrays are compared using “reference” or “pointer” equality, not component wise. The logical operators&and|are lazy logical operators on integers. They do not evaluate their right argument if evaluating the left determines the result. Zero is considered false; every-
-thing else is considered true. Unary minus has the highest precedence followed by \* and \/ , then + and -, then =, < > , > , <, >=, and<=, then &, then | , then finally := . The +, -, *, and \/ operators are left associative.\
+thing else is considered true. Unary minus has the highest precedence followed by \* and \/ , then + and -, then =, < > , > , <, >=, and<=, then &, then | , then finally := . The +, -, *, and \/ operators are left associative. The comparison operators do not associate, e.g., a = b = c is erroneous, but a = (b = c) is legal.
 
-## NEXT EDIT START HERE
+2.6 *Assignment*
 
-The com-
-parison operators do not associate, e.g.,a=b=cis erroneous, but
-a=(b=c)is legal.
+The assignment expression *lvalue* := *expr* evaluates the expression then binds its value to the contents of the *lvalue*. Assignment expressions do not produce values, so something like a := b := 1 is illegal. Array and record assignment is by reference, not value. Assigning an array or record to a variable creates an alias, meaning later updates of the variable or the value will be reflected in both places. Passing an array or record as an actual argument to a function behaves similarly. A record or array value persists from the time it is created to the termination of the program, even after control has left the scope of its definition.
 
-2.6 Assignment
+2.7 *nil*
 
-The assignment expressionlvalue:=expr evaluates the ex-
-pression then binds its value to the contents of thelvalue. As-
-signment expressions do not produce values, so something like
-a := b := 1is illegal.
-Array and record assignment is by reference, not value. As-
-signing an array or record to a variable creates an alias, meaning
-later updates of the variable or the value will be reflected in both
-places. Passing an array or record as an actual argument to a
-function behaves similarly.
-A record or array value persists from the time it is created to
-the termination of the program, even after control has left the
-scope of its definition.
-
+The expression *nil* represents a value that can be assigned to any record type. Accessing a field from a nil-valued record is a runtime error. *Nil* must be used in a context were its actual record type can be determined, thus the following are legal.
 ```
-2.7 nil
-The expressionnilrepresents a value that can be assigned to
-any record type. Accessing a field from a nil-valued record is
-a runtime error.Nilmust be used in a context were its actual
-record type can be determined, thus the following are legal.
-```
+Edits start here
 ```
 var a : rec := nil a := nil
 if a <> nil then ... if a = nil then ...
