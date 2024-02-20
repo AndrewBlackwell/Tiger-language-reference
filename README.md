@@ -87,20 +87,18 @@ The assignment expression *lvalue* := *expr* evaluates the expression then binds
 2.7 *nil*
 
 The expression *nil* represents a value that can be assigned to any record type. Accessing a field from a nil-valued record is a runtime error. *Nil* must be used in a context were its actual record type can be determined, thus the following are legal.
-```
-Edits start here
+
 ```
 var a : rec := nil a := nil
 if a <> nil then ... if a = nil then ...
 function f(p: rec) = f(nil)
 ```
-```
 But these are illegal.
 ```
+var a := nil
+if nil = nil then ...
 ```
-var a := nil if nil = nil then ...
-```
-```
+# Edits start here
 2.8 Flow control
 The if-then-else expression, writtenifexprthenexprelse
 exprevaluates the first expression, which must return an integer.
