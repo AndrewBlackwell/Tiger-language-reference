@@ -98,36 +98,11 @@ But these are illegal.
 var a := nil
 if nil = nil then ...
 ```
-# Edits start here
-2.8 Flow control
-The if-then-else expression, writtenifexprthenexprelse
-exprevaluates the first expression, which must return an integer.
-If the result is non-zero, the second expression is evaluated and
-becomes the result, otherwise the third expression is evaluated
-and becomes the result. Thus, the second and third expressions
-must be of the same type or both not return a value.
-The if-then expression,ifexprthenexprevaluates its first
-expression, which must be an integer. If the result is non-zero, it
-evaluates the second expression, which must not return a value.
-The if-then expression does not return a value.
-The while-do expression,whileexprdoexprevaluates its
-first expression, which must return an integer. If it is non-zero,
-the second expression is evaluated, which must not return a
-value, and the while-do expression is evaluated again.
-The for expression,forid:=exprtoexprdoexpr, eval-
-uates the first and second expressions, which are loop bounds.
-Then, for each integer value between the values of these two ex-
-pressions (inclusive), the third expression is evaluated with the
-integer variable named byidbound to the loop index. The scope
-of this variable is limited to the third expression, and may not be
-assigned to. This expression may not produce a result and is not
-executed if the loop’s upper bound is less than the lower bound.
-Thebreakexpression terminates the innermost enclosing
-while or for expression that is enclosed in the same func-
-tion/procedure. The break is illegal outside this.
-```
-```
-2.9 Let
+
+2.8 *Flow control*
+The if-then-else expression, written *if expr then expr else expr* evaluates the first expression, which must return an integer. If the result is non-zero, the second expression is evaluated and becomes the result, otherwise the third expression is evaluated and becomes the result. Thus, the second and third expressions must be of the same type or both not return a value. The if-then expression,ifexprthenexprevaluates its first expression, which must be an integer. If the result is non-zero, it evaluates the second expression, which must not return a value. The if-then expression does not return a value. The while-do expression, *while expr do expr* evaluates its first expression, which must return an integer. If it is non-zero, the second expression is evaluated, which must not return a value, and the while-do expression is evaluated again. The for expression, *for id := expr to expr do expr*, evaluates the first and second expressions, which are loop bounds. Then, for each integer value between the values of these two expressions (inclusive), the third expression is evaluated with the integer variable named byidbound to the loop index. The scope of this variable is limited to the third expression, and may not be assigned to. This expression may not produce a result and is not executed if the loop’s upper bound is less than the lower bound. The *break* expression terminates the innermost enclosing while or for expression that is enclosed in the same function/procedure. The break is illegal outside this.
+
+2.9 *Let*
 The expressionletdeclaration-listinexpr-seqoptendevalu-
 ates the declarations, binding types, variables, and functions to
 the scope of the expression sequence, which is a sequence of
