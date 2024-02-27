@@ -52,7 +52,7 @@ field-list:
 id = expr
 field-list , id = expr
 ```
-2.1 *Lvalues*
+**2.1 Lvalues**
 ```
 lvalue:
 id
@@ -62,29 +62,29 @@ lvalue [ expr ]
 
 An *l-value* represents a storage location that can be assigned a value: variables, parameters, fields of records, and elements of arrays. The elements of an array of size *n* are indexed by 0 , 1 ,...,n− 1.
 
-2.2 *Return values*
+**2.2 Return values**
 
 Procedure calls, assignments, if-then, while, break, and sometimes if-then-else produce no value and may not appear where a value is expected (e.g., (a := b) + c is illegal). A let expression with nothing between the in and end returns no value. A sequence of zero or more expressions in parenthesis (e.g., (a := 3; b := a) separated by semicolons are evaluated in order and returns the value produced by the final expression, if any. An empty pair of parenthesis () is legal and returns no value.
 
-2.3 *Record and Array Literals*
+**2.3 Record and Array Literals**
 
 The expression *type-id* {field-list~opt~} (zero or more fields are allowed) creates a new record instance of type *type-id*. Field names, expression types, and the order thereof must exactly match those of the given record type. The expression type-id [ expr ] of expr creates a new array of type *type-id* whose size is given by the expression in brackets. Initially, the array is filled with elements whose values are given by the expression after the of. These two expressions are evaluated in the order they appear.
 
-2.4 *Function Calls*
+**2.4 Function Calls**
 
 A function application is an expression id ( expr-list~opt~) with zero or more comma-separated expression parameters. When a function is called, the values of these actual parameters are evaluated from left to right and bound to the function’s formal parameters using conventional static scoping rules.
 
-2.5 *Operators*
+**2.5 Operators**
 
 The binary operators are+ - * / = <> < > <= >= & |
 Parentheses group expressions in the usual way. A leading minus sign negates an integer expression. The binary operators +,-,*, and / require integer operands and return an integer result. The binary operators >,<,>=, and <= compare their operands, which may be either both integer or both string and produce the integer 1 if the comparison holds and 0 otherwise. String comparison is done using normal ASCII lexicographic order. The binary operators = and <> can compare any two operands of the same (non-valueless) type and return either integer 0 or 1. Integers are the same if they have the same value. Strings are the same if they contain the same characters. Two objects of record type are the same if they refer to the same record. Two arrays are the same if they refer to the same array. That is, records and arrays are compared using “reference” or “pointer” equality, not component wise. The logical operators&and|are lazy logical operators on integers. They do not evaluate their right argument if evaluating the left determines the result. Zero is considered false; every-
 thing else is considered true. Unary minus has the highest precedence followed by \* and \/ , then + and -, then =, < > , > , <, >=, and<=, then &, then | , then finally := . The +, -, *, and \/ operators are left associative. The comparison operators do not associate, e.g., a = b = c is erroneous, but a = (b = c) is legal.
 
-2.6 *Assignment*
+**2.6 Assignment**
 
 The assignment expression *lvalue* := *expr* evaluates the expression then binds its value to the contents of the *lvalue*. Assignment expressions do not produce values, so something like a := b := 1 is illegal. Array and record assignment is by reference, not value. Assigning an array or record to a variable creates an alias, meaning later updates of the variable or the value will be reflected in both places. Passing an array or record as an actual argument to a function behaves similarly. A record or array value persists from the time it is created to the termination of the program, even after control has left the scope of its definition.
 
-2.7 *nil*
+**2.7 nil**
 
 The expression *nil* represents a value that can be assigned to any record type. Accessing a field from a nil-valued record is a runtime error. *Nil* must be used in a context were its actual record type can be determined, thus the following are legal.
 
@@ -99,30 +99,28 @@ var a := nil
 if nil = nil then ...
 ```
 
-2.8 *Flow control*
+**2.8 Flow control**
+
 The if-then-else expression, written *if expr then expr else expr* evaluates the first expression, which must return an integer. If the result is non-zero, the second expression is evaluated and becomes the result, otherwise the third expression is evaluated and becomes the result. Thus, the second and third expressions must be of the same type or both not return a value. The if-then expression,ifexprthenexprevaluates its first expression, which must be an integer. If the result is non-zero, it evaluates the second expression, which must not return a value. The if-then expression does not return a value. The while-do expression, *while expr do expr* evaluates its first expression, which must return an integer. If it is non-zero, the second expression is evaluated, which must not return a value, and the while-do expression is evaluated again. The for expression, *for id := expr to expr do expr*, evaluates the first and second expressions, which are loop bounds. Then, for each integer value between the values of these two expressions (inclusive), the third expression is evaluated with the integer variable named byidbound to the loop index. The scope of this variable is limited to the third expression, and may not be assigned to. This expression may not produce a result and is not executed if the loop’s upper bound is less than the lower bound. The *break* expression terminates the innermost enclosing while or for expression that is enclosed in the same function/procedure. The break is illegal outside this.
 
-2.9 *Let*
-The expressionletdeclaration-listinexpr-seqoptendevalu-
-ates the declarations, binding types, variables, and functions to
-the scope of the expression sequence, which is a sequence of
-zero or more semicolon-separated expressions. The result is that
-of the last expression, or nothing if there are none.
-```
-```
-3 Declarations
-declaration-list:
-declaration
-declaration-list declaration
-declaration:
-type-declaration
-variable-declaration
-function-declaration
-```
+**2.9 Let**
 
-3.1 Types
+The expression *let declaration-list in expr-seq~opt end* evaluates the declarations, binding types, variables, and functions to the scope of the expression sequence, which is a sequence of zero or more semicolon-separated expressions. The result is that of the last expression, or nothing if there are none.
 
-type-declaration:
+**3 Declarations**
+
+**declaration-list:**\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*declaration*\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*declaration-list declaration*
+
+**declaration:**\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*type-declaration*\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*variable-declaration*\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*function-declaration*
+
+**3.1 Types**
+
+*type-declaration:*
 typetype-id=type
 
 type:
