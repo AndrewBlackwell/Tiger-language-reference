@@ -125,37 +125,26 @@ The expression *let declaration-list in expr-seq~opt end* evaluates the declarat
 
 **3.1 Types**
 
-*type-declaration:*
+**type-declaration:**
+```
 typetype-id=type
-
-type:
+```
+**type:**
+```
 type-id
 {type-fieldsopt}
 array oftype-id
-
-type-fields:
+```
+**type-fields:**
+```
 type-field
 type-fields,type-field
-
-type-field:
+```
+**type-field:**
+```
 id:type-id
-Tiger has two predefined types:intandstring. New types
-may be defined and existing types redefined as follows.
-The three forms oftyperefer to a type (creates an alias in a
-declaration), a record with named, typed fields (like a C struct,
-different records may reuse field names), and an array.
-Type expressions (e.g.,{x:int},array of ty) create dis-
-tinct types, so two array types with the same base or two records
-with identical fields are different.Type a=bis an alias.
-A sequence of type declarations (i.e., with no intervening
-variable or function declarations) may be mutually recursive. No
-two defined types in such a sequence may have the same name.
-Each recursion cycle must pass through a record or array type.
-Inlet.. .type-declaration.. .inexpr-seqoptend, the scope
-of the type declaration begins at the start of the sequence of type
-declarations to which it belongs (which may be a singleton) and
-ends at theend.
-Type names have their own name space.
+```
+Tiger has two predefined types: *int* and *string*. New types may be defined and existing types redefined as follows. The three forms of *type* refer to a type (creates an alias in a declaration), a record with named, typed fields (like a C struct, different records may reuse field names), and an array. Type expressions (e.g., {x: int}, array of ty) create distinct types, so two array types with the same base or two records with identical fields are different. Type a = b is an alias. A sequence of type declarations (i.e., with no intervening variable or function declarations) may be mutually recursive. No two defined types in such a sequence may have the same name. Each recursion cycle must pass through a record or array type. Inlet.. .type-declaration.. .in expr-seq~opt end, the scope of the type declaration begins at the start of the sequence of type declarations to which it belongs (which may be a singleton) and ends at the *end*. Type names have their own name space.
 
 3.2 Variables
 
