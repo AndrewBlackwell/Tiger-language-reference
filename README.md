@@ -7,7 +7,7 @@ The Tiger language is a small, imperative language with integer and string varia
 **1 Lexical Aspects**
 
 An *identifier* is a sequence of letters, digits, and underscores that starts with a letter. Case is significant. Whitespace (spaces, tabs, newlines, returns, and formfeeds) or comments may appear between tokens and is ignored. A *comment* begins with /\* and ends with \*/. Comments may nest. An integer constant is a sequence of one or more decimal digits (i.e., 0123456789). There are no negative integer constants; negative numbers may be obtained by negating an integer constant using the unary-operator. A string constant is a sequence of zero or more printable characters, spaces, or escape sequences surrounded by double quotes " . Each escape sequence starts with a backslash \ and stands for some sequence of characters.  
-The escape sequences are\
+The escape sequences are:\
 \n     Newline\
 \t     Tab\
 \\"    Double quote\
