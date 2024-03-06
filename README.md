@@ -114,15 +114,17 @@ The expression *let declaration-list in expr-seq~opt end* evaluates the declarat
 
 **3 Declarations**
 
-**declaration-list:**\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*declaration*\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*declaration-list declaration*
-
-**declaration:**\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*type-declaration*\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*variable-declaration*\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*function-declaration*
-
+**declaration-list:**
+```
+declaration
+declaration-list declaration
+```
+**declaration:**
+```
+type-declaration
+variable-declaration
+function-declaration
+```
 **3.1 Types**
 
 **type-declaration:**
