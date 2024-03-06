@@ -8,13 +8,18 @@ The Tiger language is a small, imperative language with integer and string varia
 
 An *identifier* is a sequence of letters, digits, and underscores that starts with a letter. Case is significant. Whitespace (spaces, tabs, newlines, returns, and formfeeds) or comments may appear between tokens and is ignored. A *comment* begins with /\* and ends with \*/. Comments may nest. An integer constant is a sequence of one or more decimal digits (i.e., 0123456789). There are no negative integer constants; negative numbers may be obtained by negating an integer constant using the unary-operator. A string constant is a sequence of zero or more printable characters, spaces, or escape sequences surrounded by double quotes " . Each escape sequence starts with a backslash \ and stands for some sequence of characters.  
 The escape sequences are:\
-\n     Newline\
-\t     Tab\
-\\"    Double quote\
-\\     Backslash\
-\\^c   Control-c, wherecis one of @A...Z[\]^_.\
-\\ddd   The character with ASCII codeddd(three decimal digits)\
-\···\   Any sequence of whitespace characters (spaces, tabs, newlines, returns, and formfeeds) surrounded by\s is ignored. This allows string constants to span multiple lines by ending and starting each with a backslash. The reserved words are array break do else end for function if in let nil of then to type var while.\
+```
+- \n     Newline
+- \t     Tab
+- "    Double quote
+- \     Backslash
+- ^c   Control-c, wherecis one of @A...Z[\]^_.
+- ...   The character with ASCII code ... (three decimal digits)
+- \···\   Any sequence of whitespace characters (spaces, tabs, newlines, returns, and formfeeds)
+surrounded by\s is ignored. This allows string constants to span multiple lines by ending and
+starting each with a backslash. The reserved words are array break do else end for function if
+in let nil of then to type var while.
+```
 The punctuation symbols are, : ; ( ) [ ] { }. + - * / = <> < <= > >= & | :=
 
 **2 Expressions**
